@@ -65,6 +65,11 @@ To install Demucs, simply run the following command in your terminal or command 
 pip install demucs
 ```
 
+## Step 5: Give script permissions to run
+```bash
+chmod u+x youtube-to-instrumental-vocal-tracks_new_dir.sh
+```
+
 This will install Demucs and its dependencies, making it usable via Python without the need for cloning the GitHub repository.
 
 Now you have all the required packages installed: `youtube-dl`, `ffmpeg`, and `demucs`. You can use the `youtube-music-to-instrumental-vocal-tracks` script provided earlier to separate YouTube music tracks into instrumental and vocal tracks.
