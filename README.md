@@ -1,9 +1,9 @@
-# Usage
+## Usage
 Run `./youtube-to-instrumental-vocal-tracks.sh`
 
-# Guide: How to install required packages: `youtube-dl`, `ffmpeg`, and `demucs`
+## Guide: How to install required packages: `youtube-dl`, `ffmpeg`, and `demucs`
 
-## Step 1: Install Python
+### Step 1: Install Python
 
 To install Demucs, you need Python 3.7 or later. You can check your Python version by running the following command in your terminal:
 
@@ -13,7 +13,7 @@ python --version
 
 If you don't have Python installed or have an older version, go to the [official Python website](https://www.python.org/downloads/) and download the latest version for your operating system. Follow the installation instructions provided on the website.
 
-## Step 2: Install youtube-dl
+### Step 2: Install youtube-dl
 
 `youtube-dl` is a command-line program to download videos from YouTube and other sites. You can install it using `pip`, the Python package manager.
 
@@ -23,11 +23,11 @@ For Windows, macOS, and Linux:
 pip install youtube_dl
 ```
 
-## Step 3: Install ffmpeg
+### Step 3: Install ffmpeg
 
 `ffmpeg` is a cross-platform solution to record, convert, and stream audio and video. To install `ffmpeg`, follow the instructions for your operating system below:
 
-### For Windows:
+#### For Windows:
 
 1. Visit the [official ffmpeg website](https://ffmpeg.org/download.html) and download the Windows build.
 2. Extract the downloaded ZIP file to a folder, for example, `C:\ffmpeg`.
@@ -39,7 +39,7 @@ pip install youtube_dl
    - Click "New" and add the path to the `bin` folder, for example, `C:\ffmpeg\bin`.
 4. Restart your terminal or command prompt, and test your installation by running `ffmpeg -version`.
 
-### For macOS:
+#### For macOS:
 
 1. Install [Homebrew](https://brew.sh/) if you don't have it already.
 2. Install `ffmpeg` by running the following command in your terminal:
@@ -48,7 +48,7 @@ pip install youtube_dl
 brew install ffmpeg
 ```
 
-### For Linux (Debian/Ubuntu):
+#### For Linux (Debian/Ubuntu):
 
 1. Open your terminal and run the following commands:
 
@@ -57,7 +57,7 @@ sudo apt-get update
 sudo apt-get install ffmpeg
 ```
 
-## Step 4: Install Demucs
+### Step 4: Install Demucs
 
 To install Demucs, simply run the following command in your terminal or command prompt:
 
@@ -65,7 +65,7 @@ To install Demucs, simply run the following command in your terminal or command 
 pip install demucs
 ```
 
-## Step 5: Give script permissions to run
+### Step 5: Give script permissions to run
 ```bash
 chmod u+x youtube-to-instrumental-vocal-tracks_new_dir.sh
 ```
