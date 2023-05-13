@@ -1,0 +1,4 @@
+1. use mp3, instead of wav. 
+2. youtube dl add `-f bestaudio` 
+2. Update script to recursive combine all tracks that isn't vocal. instead of hard coding bass, drum, other.
+
