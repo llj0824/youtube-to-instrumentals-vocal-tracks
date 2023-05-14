@@ -54,13 +54,17 @@ ffmpeg -i separated/"$filename_no_ext"_vocals.wav -vn -ar 44100 -ac 2 -b:a 192k 
 rm separated/"$filename_no_ext"_instrumental.wav
 rm separated/"$filename_no_ext"_vocals.wav
 
-# Create a directory named the same as $filename_no_ext
-mkdir "$filename_no_ext"
+# Create a directory named the same as $output_filename
+mkdir "$output_filename"
 
 # Rename the output files with the user provided output filename
 mv separated/tmp_audio_instrumental.mp3 separated/"$output_filename"_instrumental.mp3
 mv separated/tmp_audio_vocals.mp3 separated/"$output_filename"_vocals.mp3
 
 # Move the output files into the new directory
-mv separated/"$output_filename"_instrumental.mp3 "$filename_no_ext"/"$output_filename"_instrumental.mp3
-mv separated/"$output_filename"_vocals.mp3 "$filename_no_ext"/"$output_filename"_vocals.mp3
+mv separated/"$output_filename"_instrumental.mp3 "$output_filename"/"$output_filename"_instrumental.mp3
+mv separated/"$output_filename"_vocals.mp3 "$output_filename"/"$output_filename"_vocals.mp3
+
+# remove transient files
+rm -rf separated
+rm tmp_audio.mp3
