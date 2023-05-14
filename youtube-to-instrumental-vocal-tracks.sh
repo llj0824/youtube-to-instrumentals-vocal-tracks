@@ -28,10 +28,10 @@ done
 read -p "Enter the output filename (without extension): " output_filename
 
 # Download the audio from the YouTube video
-youtube-dl -x --audio-format wav -o "tmp_audio.%(ext)s" "$youtube_link"
+youtube-dl -f bestaudio -x --external-downloader aria2c --external-downloader-args "-x 16 -s 16 -k 10M" --audio-format mp3 -o "tmp_audio.%(ext)s" "$youtube_link"
 
 # Run Demucs to separate the tracks
-python3 -m demucs.separate -o separated tmp_audio.wav
+python3 -m demucs.separate -o separated tmp_audio.mp3
 
 # Extract the filename without extension
 filename="tmp_audio"
@@ -46,9 +46,21 @@ mv separated/htdemucs/"$filename_no_ext"/vocals.wav separated/"$filename_no_ext"
 # Remove the original separated tracks folder
 rm -r separated/htdemucs/"$filename_no_ext"
 
-# Rename the output files with the user provided output filename
-mv separated/tmp_audio_instrumental.wav separated/"$output_filename"_instrumental.wav
-mv separated/tmp_audio_vocals.wav separated/"$output_filename"_vocals.wav
+# Convert the output files to mp3 format
+ffmpeg -i separated/"$filename_no_ext"_instrumental.wav -vn -ar 44100 -ac 2 -b:a 192k separated/"$filename_no_ext"_instrumental.mp3
+ffmpeg -i separated/"$filename_no_ext"_vocals.wav -vn -ar 44100 -ac 2 -b:a 192k separated/"$filename_no_ext"_vocals.mp3
 
-# Cleanup
-rm tmp_audio.wav
+# Remove the wav files
+rm separated/"$filename_no_ext"_instrumental.wav
+rm separated/"$filename_no_ext"_vocals.wav
+
+# Create a directory named the same as $filename_no_ext
+mkdir "$filename_no_ext"
+
+# Rename the output files with the user provided output filename
+mv separated/tmp_audio_instrumental.mp3 separated/"$output_filename"_instrumental.mp3
+mv separated/tmp_audio_vocals.mp3 separated/"$output_filename"_vocals.mp3
+
+# Move the output files into the new directory
+mv separated/"$output_filename"_instrumental.mp3 "$filename_no_ext"/"$output_filename"_instrumental.mp3
+mv separated/"$output_filename"_vocals.mp3 "$filename_no_ext"/"$output_filename"_vocals.mp3
