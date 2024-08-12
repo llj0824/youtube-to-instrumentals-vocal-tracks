@@ -8,9 +8,9 @@
 
 # Function to check if the YouTube link is valid
 function validate_youtube_link() {
-  youtube_link="$1"
-  # Use youtube-dl to check if the link is valid
-  youtube-dl -s "$youtube_link" &> /dev/null
+  local youtube_link="$1"
+  # Use yt-dlp to check if the link is valid
+  yt-dlp --simulate "$youtube_link" &> /dev/null
   return $?
 }
 
@@ -28,7 +28,7 @@ done
 read -p "Enter the output filename (without extension): " output_filename
 
 # Download the audio from the YouTube video
-youtube-dl -f bestaudio -x --external-downloader aria2c --external-downloader-args "-x 16 -s 16 -k 10M" --audio-format mp3 -o "tmp_audio.%(ext)s" "$youtube_link"
+yt-dlp -f bestaudio --extract-audio --external-downloader aria2c --external-downloader-args "-x 16 -s 16 -k 10M" --audio-format mp3 -o "tmp_audio.%(ext)s" "$youtube_link"
 
 # Run Demucs to separate the tracks
 python3 -m demucs.separate -o separated tmp_audio.mp3
